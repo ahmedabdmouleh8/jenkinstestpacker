@@ -13,6 +13,9 @@ ansiColor('xterm') {
             //sh "packer validate jenkins.json"
             sh "packer validate ubuntu-2204-daily.pkr.hcl"
         }
+        stage('Run Serva') {
+            sh 'C:\\Program Files\\Serva\\Serva.exe'
+        }
         stage('Build') {
             //withCredentials([usernamePassword(credentialsId: 'aws_access_keys', usernameVariable: 'AWS_ACCESS_KEY', passwordVariable: 'AWS_SECRET_KEY')]) {
             // Run the packer build
