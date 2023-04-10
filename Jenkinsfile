@@ -6,9 +6,9 @@ ansiColor('xterm') {
             // Get some code from a GitHub repository
             checkout scm
         }
-        stage('Setup') {
-            sh "ansible-galaxy install -r requirements.yml"
-        }
+        //stage('Setup') {
+            //sh "ansible-galaxy install -r requirements.yml"
+        //}
         stage('Validate') {
             //sh "packer validate jenkins.json"
             sh "packer validate ubuntu-2204-daily.pkr.hcl"
