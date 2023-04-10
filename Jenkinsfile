@@ -14,7 +14,10 @@ ansiColor('xterm') {
             sh "packer validate ubuntu-2204-daily.pkr.hcl"
         }
         stage('Run Serva') {
+           
+            bat 'expect C:\\serva\\serva.exp'
             sh 'C:\\serva\\Serva64.exe'
+ 
         }
         stage('Build') {
             //withCredentials([usernamePassword(credentialsId: 'aws_access_keys', usernameVariable: 'AWS_ACCESS_KEY', passwordVariable: 'AWS_SECRET_KEY')]) {
