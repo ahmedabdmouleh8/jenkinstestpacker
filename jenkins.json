@@ -6,7 +6,6 @@
   },
   "builders": [{
     "type": "amazon-ebs",
-    "disable_stop_instance": true,
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "{{user `aws_region`}}",
