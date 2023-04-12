@@ -10,22 +10,23 @@ ansiColor('xterm') {
             //sh "ansible-galaxy install -r requirements.yml"
         //}
         stage('Validate') {
-            //sh "packer validate jenkins.json"
-            sh "packer validate ubuntu-2204-daily.pkr.hcl"
+            sh "packer validate jenkins.json"
+            //sh "packer validate ubuntu-2204-daily.pkr.hcl"
         }
-        stage('Run Serva') {
-           
-            bat 'expect C:\\serva\\serva.exp'
-            sh 'C:\\serva\\Serva64.exe'
- 
-        }
+       
         stage('Build') {
-            //withCredentials([usernamePassword(credentialsId: 'aws_access_keys', usernameVariable: 'AWS_ACCESS_KEY', passwordVariable: 'AWS_SECRET_KEY')]) {
+            withCredentials([usernamePassword(credentialsId: 'aws_access_keys', usernameVariable: 'AWS_ACCESS_KEY', passwordVariable: 'AWS_SECRET_KEY')]) {
             // Run the packer build
-            //sh "packer build -var 'aws_region=us-west-2' jenkins.json"
-            //}
-            sh "packer build ubuntu-2204-daily.pkr.hcl"
+            sh "packer build -var 'aws_region=us-west-2' jenkins.json"
+            }
+            //sh "packer build ubuntu-2204-daily.pkr.hcl"
         }
+         //stage('Run Serva') {
+           
+            //bat 'expect C:\\serva\\serva.exp'
+            //sh 'C:\\serva\\Serva64.exe'
+ 
+        //}
         stage('Store Artifacts') {
             archiveArtifacts 'manifest.json'
         }
